@@ -8,7 +8,7 @@ export interface Props {}
 export function ResetPassword(props: Props) {
   const resetPassword = async (values: any) => {
     const { data, error } = await supabase.auth.updateUser({
-      email: "swifttask@yopmail.com",
+      //email: "swifttask@yopmail.com",
       password: values.password,
     });
     console.log(

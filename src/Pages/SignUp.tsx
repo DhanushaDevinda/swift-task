@@ -16,10 +16,12 @@ export function SignUp(props: Props) {
   //   console.log("🚀 ~ file: App.tsx:19 ~ login ~ data, error:", data, error);
   // };
 
-  const signUp = async () => {
+  const signUp = async (values: any) => {
     let { data, error } = await supabase.auth.signUp({
-      email: "meone@yopmail.com",
-      password: "gOgLCuOQkHWKakbPjRBF",
+      email: values.email,
+      //"meone@yopmail.com",
+      password: values.password,
+      //"gOgLCuOQkHWKakbPjRBF",
     });
     console.log("🚀 ~ file: App.tsx:19 ~ login ~ data, error:", data, error);
   };
