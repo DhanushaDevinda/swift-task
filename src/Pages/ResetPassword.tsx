@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { supabase } from "../supabase";
 import styled from "@emotion/styled";
+import { AuthLayout } from "../components/Layout/AuthLayout";
 
 const StyledForm = styled(Form)`
   width: 300px;
@@ -41,34 +42,36 @@ export function ResetPassword() {
   };
 
   return (
-    <StyledForm
-      name="normal_login"
-      className="login-form"
-      initialValues={{ remember: true }}
-      onFinish={resetPassword}
-    >
-      <h2>Reset Password</h2>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please input your Password!" }]}
+    <AuthLayout>
+      <StyledForm
+        name="normal_login"
+        className="login-form"
+        initialValues={{ remember: true }}
+        onFinish={resetPassword}
       >
-        <Input className="password" type="password" placeholder="Password" />
-      </Form.Item>
-      <Form.Item
-        name="confirmPassword"
-        rules={[{ required: true, message: "Please input your Password!" }]}
-      >
-        <Input
-          className="password"
-          type="password"
-          placeholder="Confirm Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-button">
-          Reset Password
-        </Button>
-      </Form.Item>
-    </StyledForm>
+        <h2>Reset Password</h2>
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input className="password" type="password" placeholder="Password" />
+        </Form.Item>
+        <Form.Item
+          name="confirmPassword"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input
+            className="password"
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-button">
+            Reset Password
+          </Button>
+        </Form.Item>
+      </StyledForm>
+    </AuthLayout>
   );
 }

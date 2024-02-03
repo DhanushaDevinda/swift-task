@@ -1,6 +1,7 @@
 import { Button, Checkbox, Form, Input } from "antd";
 import { supabase } from "../supabase";
 import styled from "@emotion/styled";
+import { AuthLayout } from "../components/Layout/AuthLayout";
 
 const StyledForm = styled(Form)`
   width: 300px;
@@ -41,54 +42,56 @@ export function SignUp() {
   };
 
   return (
-    <StyledForm
-      name="normal_login"
-      className="login-form"
-      initialValues={{ remember: true }}
-      onFinish={signUp}
-    >
-      <h2>Sign Up</h2>
+    <AuthLayout>
+      <StyledForm
+        name="normal_login"
+        className="login-form"
+        initialValues={{ remember: true }}
+        onFinish={signUp}
+      >
+        <h2>Sign Up</h2>
 
-      <Form.Item
-        name="username"
-        rules={[{ required: true, message: "Please input your Username!" }]}
-      >
-        <Input className="username" placeholder="Username" />
-      </Form.Item>
-      <Form.Item
-        name="email"
-        rules={[{ required: true, message: "Please input your email!" }]}
-      >
-        <Input className="email" placeholder="Email" />
-      </Form.Item>
-      <Form.Item
-        name="password"
-        rules={[{ required: true, message: "Please input your Password!" }]}
-      >
-        <Input className="password" type="password" placeholder="Password" />
-      </Form.Item>
-      <Form.Item
-        name="confirmPassword"
-        rules={[{ required: true, message: "Please input your Password!" }]}
-      >
-        <Input
-          className="password"
-          type="password"
-          placeholder="Confirm Password"
-        />
-      </Form.Item>
-      <Form.Item>
-        <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>I Agree with Terms and Policy</Checkbox>
+        <Form.Item
+          name="username"
+          rules={[{ required: true, message: "Please input your Username!" }]}
+        >
+          <Input className="username" placeholder="Username" />
         </Form.Item>
-      </Form.Item>
+        <Form.Item
+          name="email"
+          rules={[{ required: true, message: "Please input your email!" }]}
+        >
+          <Input className="email" placeholder="Email" />
+        </Form.Item>
+        <Form.Item
+          name="password"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input className="password" type="password" placeholder="Password" />
+        </Form.Item>
+        <Form.Item
+          name="confirmPassword"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input
+            className="password"
+            type="password"
+            placeholder="Confirm Password"
+          />
+        </Form.Item>
+        <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>I Agree with Terms and Policy</Checkbox>
+          </Form.Item>
+        </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-button">
-          Sign Up
-        </Button>
-      </Form.Item>
-    </StyledForm>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-button">
+            Sign Up
+          </Button>
+        </Form.Item>
+      </StyledForm>
+    </AuthLayout>
   );
 }
 

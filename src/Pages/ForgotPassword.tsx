@@ -1,6 +1,7 @@
 import { Button, Form, Input } from "antd";
 import { supabase } from "../supabase";
 import styled from "@emotion/styled";
+import { AuthLayout } from "../components/Layout/AuthLayout";
 
 const StyledForm = styled(Form)`
   width: 300px;
@@ -41,27 +42,29 @@ export function ForgotPassword() {
   };
 
   return (
-    <StyledForm
-      name="normal_login"
-      className="login-form"
-      initialValues={{ remember: true }}
-      onFinish={resetPassword}
-    >
-      <h2>Recover your Password</h2>
-      <Form.Item
-        name="email"
-        rules={[{ required: true, message: "Please input your email!" }]}
+    <AuthLayout>
+      <StyledForm
+        name="normal_login"
+        className="login-form"
+        initialValues={{ remember: true }}
+        onFinish={resetPassword}
       >
-        <Input className="email" placeholder="Email" />
-      </Form.Item>
+        <h2>Recover your Password</h2>
+        <Form.Item
+          name="email"
+          rules={[{ required: true, message: "Please input your email!" }]}
+        >
+          <Input className="email" placeholder="Email" />
+        </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-button">
-          Reset Password
-        </Button>
-      </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="login-button">
+            Reset Password
+          </Button>
+        </Form.Item>
 
-      <Form.Item>Back to Login</Form.Item>
-    </StyledForm>
+        <Form.Item>Back to Login</Form.Item>
+      </StyledForm>
+    </AuthLayout>
   );
 }

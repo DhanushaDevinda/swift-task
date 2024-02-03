@@ -3,6 +3,7 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import { supabase } from "../supabase";
 import styled from "@emotion/styled";
+import { AuthLayout } from "../components/Layout/AuthLayout";
 
 const StyledForm = styled(Form)`
   width: 300px;
@@ -43,7 +44,7 @@ export function SignIn() {
   };
 
   return (
-    <div className="App">
+    <AuthLayout>
       <StyledForm
         layout="vertical"
         name="normal_login"
@@ -82,6 +83,6 @@ export function SignIn() {
           Don't have an account? <Link to="/sign-up">register now!</Link>
         </Form.Item>
       </StyledForm>
-    </div>
+    </AuthLayout>
   );
 }

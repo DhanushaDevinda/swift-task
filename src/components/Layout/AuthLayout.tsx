@@ -20,23 +20,8 @@ const AuthLayoutForm = styled.div`
 
 export const AuthLayout: FC<Props> = ({ children }) => {
   return (
-    <Row style={{ height: "100vh" }}>
-      <Col xs={24} sm={24} md={24} lg={24} xl={12} xxl={12}>
-        <div>{/* <ImageTop src={TopRightBackground} /> */}</div>
-        <AuthLayoutForm>{children}</AuthLayoutForm>
-      </Col>
-
-      <Col xs={0} sm={0} md={0} lg={0} xl={12} xxl={12}>
-        {/* <Image
-      src={Rectangle}
-      style={{
-        width: '100%',
-        height: '100vh',
-        position: 'absolute',
-        objectFit: 'cover',
-      }}
-    /> */}
-      </Col>
-    </Row>
+    <div style={{ height: "100vh" }}>
+      <AuthLayoutForm>{children}</AuthLayoutForm>
+    </div>
   );
 };
