@@ -1,50 +1,67 @@
-import * as React from "react";
-import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { supabase } from "../supabase";
-import { AuthLayout } from "../components/Layout/AuthLayout";
+import styled from "@emotion/styled";
 
-export interface Props {}
+const StyledForm = styled(Form)`
+  width: 300px;
+  padding: 30px;
+  margin: 50px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-export function ForgotPassword(props: Props) {
-  const resetPassword = async (values: { email: string }) => {
+  .email,
+  .password,
+  .username {
+    width: 100%;
+    padding: 6px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .login-button {
+    width: 100%;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049 !important;
+    }
+  }
+`;
+
+export function ForgotPassword() {
+  const resetPassword = async (values: any) => {
     let { data, error } = await supabase.auth.resetPasswordForEmail(
       values.email
     );
-    console.log("🚀 ~ file: App.tsx:19 ~ login ~ data, error:", data, error);
   };
 
   return (
-    <AuthLayout>
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{ remember: true }}
-        onFinish={resetPassword}
+    <StyledForm
+      name="normal_login"
+      className="login-form"
+      initialValues={{ remember: true }}
+      onFinish={resetPassword}
+    >
+      <h2>Recover your Password</h2>
+      <Form.Item
+        name="email"
+        rules={[{ required: true, message: "Please input your email!" }]}
       >
-        <p>Recover your Password</p>
-        <Form.Item
-          name="email"
-          rules={[{ required: true, message: "Please input your email!" }]}
-        >
-          <Input
-            prefix={<MailOutlined className="site-form-item-icon" />}
-            placeholder="Email"
-          />
-        </Form.Item>
+        <Input className="email" placeholder="Email" />
+      </Form.Item>
 
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            Reset Password
-          </Button>
-        </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-button">
+          Reset Password
+        </Button>
+      </Form.Item>
 
-        <Form.Item>Back to Login</Form.Item>
-      </Form>
-    </AuthLayout>
+      <Form.Item>Back to Login</Form.Item>
+    </StyledForm>
   );
 }

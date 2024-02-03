@@ -9,6 +9,7 @@ export default function NavigationRoutes() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<SignIn />} />
         <Route path="/">
           <Route path="sign-up" element={<SignUp />} />
           <Route path="sign-in" element={<SignIn />} />

@@ -1,61 +1,74 @@
-import { LockOutlined, UserOutlined, MailOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { supabase } from "../supabase";
-import { AuthLayout } from "../components/Layout/AuthLayout";
+import styled from "@emotion/styled";
 
-export interface Props {}
+const StyledForm = styled(Form)`
+  width: 300px;
+  padding: 30px;
+  margin: 50px auto;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-export function ResetPassword(props: Props) {
+  .email,
+  .password,
+  .username {
+    width: 100%;
+    padding: 6px 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .login-button {
+    width: 100%;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #45a049 !important;
+    }
+  }
+`;
+
+export function ResetPassword() {
   const resetPassword = async (values: any) => {
     const { data, error } = await supabase.auth.updateUser({
-      //email: "swifttask@yopmail.com",
       password: values.password,
     });
-    console.log(
-      "🚀 ~ file: ResetPassword.tsx:13 ~ resetPassword ~ data, error:",
-      data,
-      error
-    );
   };
 
   return (
-    <AuthLayout>
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{ remember: true }}
-        onFinish={resetPassword}
+    <StyledForm
+      name="normal_login"
+      className="login-form"
+      initialValues={{ remember: true }}
+      onFinish={resetPassword}
+    >
+      <h2>Reset Password</h2>
+      <Form.Item
+        name="password"
+        rules={[{ required: true, message: "Please input your Password!" }]}
       >
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Confirm Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="login-form-button"
-          >
-            Reset Password
-          </Button>
-        </Form.Item>
-      </Form>
-    </AuthLayout>
+        <Input className="password" type="password" placeholder="Password" />
+      </Form.Item>
+      <Form.Item
+        name="confirmPassword"
+        rules={[{ required: true, message: "Please input your Password!" }]}
+      >
+        <Input
+          className="password"
+          type="password"
+          placeholder="Confirm Password"
+        />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-button">
+          Reset Password
+        </Button>
+      </Form.Item>
+    </StyledForm>
   );
 }

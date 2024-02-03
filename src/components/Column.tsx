@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Flex } from "./Flex";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import { B } from "./text/B";
-import { H } from "./text/H";
 import theme from "../theme";
 import { Avatar } from "../assets";
 import { Col, Row } from "antd";
@@ -63,8 +62,6 @@ const Column: FC<Props> = ({ column, tasks }) => {
                           borderRadius="8px"
                           display=""
                           position="relative"
-                          // height={closableWelcomeNote ? '455px' : '318px'}
-                          // margin="16px"
                         >
                           <Flex p="8px" flexDirection={"column"}>
                             <B
@@ -77,7 +74,7 @@ const Column: FC<Props> = ({ column, tasks }) => {
 
                             <span>
                               <Flex alignItems={"center"}>
-                                <img src={Avatar} />
+                                <img src={Avatar} alt="avatar" />
                               </Flex>
                             </span>
                           </Flex>
