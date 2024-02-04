@@ -4,6 +4,7 @@ import { SignIn } from "./Pages/SignIn";
 import Board from "./components/Board";
 import { ResetPassword } from "./Pages/ResetPassword";
 import { ForgotPassword } from "./Pages/ForgotPassword";
+import Kanboard from "./Pages/Kanboard";
 
 export default function NavigationRoutes() {
   return (
@@ -16,7 +17,7 @@ export default function NavigationRoutes() {
           <Route path="reset-password" element={<ResetPassword />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
 
-          <Route path="board" element={<Board />} />
+          <Route path="board" element={<Kanboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

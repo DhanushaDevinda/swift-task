@@ -1,9 +1,10 @@
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, message } from "antd";
 import "../App.css";
 import { Link } from "react-router-dom";
 import { supabase } from "../supabase";
 import styled from "@emotion/styled";
 import { AuthLayout } from "../components/Layout/AuthLayout";
+import { useNavigate } from "react-router-dom";
 
 const StyledForm = styled(Form)`
   width: 300px;
@@ -36,11 +37,19 @@ const StyledForm = styled(Form)`
 `;
 
 export function SignIn() {
+  const navigate = useNavigate();
   const signIn = async (values: any) => {
     let { data, error } = await supabase.auth.signInWithPassword({
       email: values.username,
       password: values.password,
     });
+    if (error) {
+      message.error("Invalid email or password");
+      navigate("/sign-in");
+    } else {
+      message.success("Successfully logged in");
+      navigate("/board");
+    }
   };
 
   return (
